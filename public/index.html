@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ==========================================================
+         Meta
+         ========================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- ==========================================================
+         Page Information
+         ========================================================== -->
+
+    <title>Fatora System | Product Management</title>
+
+    <meta name="description"
+        content="A modern product management and invoice CRUD system built with HTML, CSS and JavaScript.">
+
+
+    <!-- ==========================================================
+         Google Fonts
+         ========================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <!-- ==========================================================
+         Bootstrap CSS
+         ========================================================== -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
+    <!-- ==========================================================
+         Font Awesome
+         ========================================================== -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <!-- ==========================================================
+         Main CSS
+         ========================================================== -->
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================================
+         App
+         ========================================================== -->
+
+    <div class="app">
+
+
+        <!-- ======================================================
+             Header
+             ====================================================== -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+
+                <!-- Brand -->
+
+                <a href="#" class="brand">
+
+                    <span class="brand-logo">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                    </span>
+
+                    <span class="brand-content">
+
+                        <strong>
+                            Fatora
+                        </strong>
+
+                        <small>
+                            Management System
+                        </small>
+
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+            <!-- Header Right -->
+
+            <div class="header-right">
+
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    System Online
+
+                </div>
+
+
+                <button type="button" class="header-add-button" data-bs-toggle="modal"
+                    data-bs-target="#addProductModal">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    <span>
+                        Add Product
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ======================================================
+             Main Content
+             ====================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ==================================================
+                 Welcome Section
+                 ================================================== -->
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        PRODUCT MANAGEMENT
+                    </span>
+
+                    <h1>
+                        Manage your inventory
+                    </h1>
+
+                    <p>
+                        Track products, quantities and total inventory value
+                        from one simple dashboard.
+                    </p>
+
+                </div>
+
+
+                <div class="date-card">
+
+                    <span>
+                        <i class="fa-regular fa-calendar"></i>
+                    </span>
+
+                    <div>
+
+                        <small>
+                            TODAY
+                        </small>
+
+                        <strong id="currentDate">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 Statistics
+                 ================================================== -->
+
+            <section class="statistics-section">
+
+                <div class="row g-4">
+
+
+                    <!-- Total Products -->
+
+                    <div class="col-12 col-md-6 col-xl-4">
+
+                        <article class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon products-stat">
+
+                                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                                </div>
+
+                                <span class="stat-badge">
+                                    PRODUCTS
+                                </span>
+
+                            </div>
+
+                            <div class="stat-bottom">
+
+                                <span>
+                                    Total Products
+                                </span>
+
+                                <strong id="productsCount">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- Total Quantity -->
+
+                    <div class="col-12 col-md-6 col-xl-4">
+
+                        <article class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon quantity-stat">
+
+                                    <i class="fa-solid fa-layer-group"></i>
+
+                                </div>
+
+                                <span class="stat-badge">
+                                    INVENTORY
+                                </span>
+
+                            </div>
+
+                            <div class="stat-bottom">
+
+                                <span>
+                                    Total Quantity
+                                </span>
+
+                                <strong id="quantityCount">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- Total Value -->
+
+                    <div class="col-12 col-md-12 col-xl-4">
+
+                        <article class="stat-card featured-stat">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon value-stat">
+
+                                    <i class="fa-solid fa-wallet"></i>
+
+                                </div>
+
+                                <span class="stat-badge">
+                                    VALUE
+                                </span>
+
+                            </div>
+
+                            <div class="stat-bottom">
+
+                                <span>
+                                    Total Inventory Value
+                                </span>
+
+                                <strong>
+
+                                    <span id="total">
+                                        0
+                                    </span>
+
+                                    <small>
+                                        EGP
+                                    </small>
+
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 Products Section
+                 ================================================== -->
+
+            <section class="products-section">
+
+
+                <!-- Section Header -->
+
+                <div class="products-header">
+
+                    <div class="products-heading">
+
+                        <div class="heading-icon">
+
+                            <i class="fa-solid fa-box"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                INVENTORY
+                            </span>
+
+                            <h2>
+                                Products
+                            </h2>
+
+                            <p>
+                                Manage all products in your inventory.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Search -->
+
+                    <div class="search-wrapper">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input type="search" id="searchInput" placeholder="Search products..." autocomplete="off">
+
+                        <kbd>
+                            /
+                        </kbd>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     Table
+                     ================================================== -->
+
+                <div class="table-container">
+
+
+                    <div class="table-topbar">
+
+                        <div>
+
+                            <span class="live-indicator"></span>
+
+                            <span>
+                                Live inventory
+                            </span>
+
+                        </div>
+
+                        <span id="resultsCount">
+                            0 products
+                        </span>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+                        <table class="products-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        #
+                                    </th>
+
+                                    <th>
+                                        Product
+                                    </th>
+
+                                    <th>
+                                        Price
+                                    </th>
+
+                                    <th>
+                                        Quantity
+                                    </th>
+
+                                    <th>
+                                        Total Value
+                                    </th>
+
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="tbodyTable">
+
+                                <!-- JavaScript -->
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         Empty State
+                         ================================================== -->
+
+                    <div class="empty-state" id="emptyState">
+
+                        <div class="empty-illustration">
+
+                            <i class="fa-solid fa-box-open"></i>
+
+                        </div>
+
+                        <span>
+                            INVENTORY EMPTY
+                        </span>
+
+                        <h3>
+                            No products found
+                        </h3>
+
+                        <p>
+                            Add your first product to start managing
+                            your inventory.
+                        </p>
+
+                        <button type="button" class="empty-add-button" data-bs-toggle="modal"
+                            data-bs-target="#addProductModal">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Add First Product
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- ======================================================
+             Footer
+             ====================================================== -->
+
+        <footer class="footer">
+
+            <p>
+                © 2026
+                <strong>
+                    Fatora System
+                </strong>
+                <span>
+                    •
+                </span>
+                Product Management Dashboard
+            </p>
+
+            <span class="footer-tech">
+                HTML
+                <b>•</b>
+                CSS
+                <b>•</b>
+                JavaScript
+            </span>
+
+        </footer>
+
+
+    </div>
+
+
+
+    <!-- ==========================================================
+         ADD PRODUCT MODAL
+         ========================================================== -->
+
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content custom-modal">
+
+
+                <!-- Modal Header -->
+
+                <div class="custom-modal-header">
+
+                    <div class="modal-heading">
+
+                        <div class="modal-icon add-icon">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                INVENTORY
+                            </span>
+
+                            <h2>
+                                Add Product
+                            </h2>
+
+                            <p>
+                                Create a new product in your inventory.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Modal Body -->
+
+                <div class="custom-modal-body">
+
+
+                    <!-- Product Name -->
+
+                    <div class="form-field">
+
+                        <label for="inpPhoneName">
+
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+
+                            Product Name
+
+                        </label>
+
+                        <input type="text" id="inpPhoneName" class="custom-input" placeholder="e.g. iPhone 15 Pro"
+                            autocomplete="off">
+
+                        <small class="input-error" id="nameError"></small>
+
+                    </div>
+
+
+
+                    <!-- Price & Quantity -->
+
+                    <div class="row g-3">
+
+
+                        <!-- Price -->
+
+                        <div class="col-12 col-md-6">
+
+                            <div class="form-field">
+
+                                <label for="inpPhonePrice">
+
+                                    <i class="fa-solid fa-tag"></i>
+
+                                    Price
+
+                                </label>
+
+                                <div class="input-group-custom">
+
+                                    <input type="number" id="inpPhonePrice" class="custom-input" placeholder="0.00"
+                                        min="0" step="0.01">
+
+                                    <span>
+                                        EGP
+                                    </span>
+
+                                </div>
+
+                                <small class="input-error" id="priceError"></small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Quantity -->
+
+                        <div class="col-12 col-md-6">
+
+                            <div class="form-field">
+
+                                <label for="inpPhoneQts">
+
+                                    <i class="fa-solid fa-cubes"></i>
+
+                                    Quantity
+
+                                </label>
+
+                                <input type="number" id="inpPhoneQts" class="custom-input" placeholder="0" min="0"
+                                    step="1">
+
+                                <small class="input-error" id="qtsError"></small>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Modal Footer -->
+
+                <div class="custom-modal-footer">
+
+                    <button type="button" class="cancel-button" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+
+                    <button type="button" class="primary-modal-button" id="addProductButton">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Product
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================================
+         UPDATE PRODUCT MODAL
+         ========================================================== -->
+
+    <div class="modal fade" id="updateProductModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content custom-modal">
+
+
+                <!-- Header -->
+
+                <div class="custom-modal-header">
+
+                    <div class="modal-heading">
+
+                        <div class="modal-icon edit-icon">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                INVENTORY
+                            </span>
+
+                            <h2>
+                                Update Product
+                            </h2>
+
+                            <p>
+                                Modify the selected product information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Body -->
+
+                <div class="custom-modal-body">
+
+
+                    <!-- Product Name -->
+
+                    <div class="form-field">
+
+                        <label for="inpPhoneName2">
+
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+
+                            Product Name
+
+                        </label>
+
+                        <input type="text" id="inpPhoneName2" class="custom-input" placeholder="Enter product name"
+                            autocomplete="off">
+
+                        <small class="input-error" id="updateNameError"></small>
+
+                    </div>
+
+
+
+                    <div class="row g-3">
+
+
+                        <!-- Price -->
+
+                        <div class="col-12 col-md-6">
+
+                            <div class="form-field">
+
+                                <label for="inpPhonePrice2">
+
+                                    <i class="fa-solid fa-tag"></i>
+
+                                    Price
+
+                                </label>
+
+                                <div class="input-group-custom">
+
+                                    <input type="number" id="inpPhonePrice2" class="custom-input" placeholder="0.00"
+                                        min="0" step="0.01">
+
+                                    <span>
+                                        EGP
+                                    </span>
+
+                                </div>
+
+                                <small class="input-error" id="updatePriceError"></small>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Quantity -->
+
+                        <div class="col-12 col-md-6">
+
+                            <div class="form-field">
+
+                                <label for="inpPhoneQts2">
+
+                                    <i class="fa-solid fa-cubes"></i>
+
+                                    Quantity
+
+                                </label>
+
+                                <input type="number" id="inpPhoneQts2" class="custom-input" placeholder="0" min="0"
+                                    step="1">
+
+                                <small class="input-error" id="updateQtsError"></small>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Footer -->
+
+                <div class="custom-modal-footer">
+
+                    <button type="button" class="cancel-button" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+
+                    <button type="button" class="update-modal-button" id="updateProductButton">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================================
+         DELETE MODAL
+         ========================================================== -->
+
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content custom-modal delete-modal">
+
+
+                <div class="delete-body">
+
+                    <div class="delete-icon">
+
+                        <i class="fa-solid fa-trash-can"></i>
+
+                    </div>
+
+                    <span>
+                        DELETE PRODUCT
+                    </span>
+
+                    <h2>
+                        Delete this product?
+                    </h2>
+
+                    <p>
+                        This action cannot be undone. The product
+                        <strong id="deleteProductName">
+                            this product
+                        </strong>
+                        will be permanently removed.
+                    </p>
+
+                </div>
+
+
+                <div class="custom-modal-footer delete-footer">
+
+                    <button type="button" class="cancel-button" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+
+                    <button type="button" class="delete-confirm-button" id="confirmDeleteButton">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Delete Product
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================================
+         SUCCESS TOAST
+         ========================================================== -->
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-4">
+
+        <div id="successToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+
+            <div class="toast-body">
+
+                <div class="toast-icon">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <div class="toast-content">
+
+                    <strong id="toastTitle">
+                        Success
+                    </strong>
+
+                    <p id="toastMessage">
+                        Operation completed successfully.
+                    </p>
+
+                </div>
+
+                <button type="button" class="toast-close" data-bs-dismiss="toast" aria-label="Close">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================================
+         Bootstrap JS
+         ========================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+
+    <!-- ==========================================================
+         Main JavaScript
+         ========================================================== -->
+
+    <script src="logic.js"></script>
+
+
+</body>
+
+</html>
